@@ -45,21 +45,14 @@ public class LibrarySystem {
     public void returnBook(Book book,User user){
         for (Loan loan : loans) {
             if (loan.getBook().getTitle().equals(book.getTitle()) && loan.getReturnDate() == null){
-        book.setAvailable(true);
+        loan.getBook().setAvailable(true);
                 loan.setReturnDate(new Date());
             }
         }
     }
 
-    public ArrayList<Book> searchBooks(String query) {
-        ArrayList<Book> result = new ArrayList<>();
-        for (Book book : books) {
-            if (book.getTitle().toLowerCase().contains(query.toLowerCase()) ||
-                    book.getAuthor().toLowerCase().contains(query.toLowerCase())){
-                result.add(book);
-            }
-        }
-        return result;
+    public ArrayList<Book> searchBooks() {
+        return getBooks();
     }
 
     @Override
